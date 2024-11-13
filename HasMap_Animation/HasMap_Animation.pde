@@ -1,45 +1,32 @@
 MapController controller;
 int i;
+Section s;
 
 void setup() {
   size(1024, 1024); // Size needs to be of power 2, otherwise small gaps happens at small sections sizes...
-  controller = new MapController(1000, 10);
-  frameRate(10);
+  controller = new MapController(10000, 10);
+  // frameRate(1);
   i = 0;
-  //controller.sortAtomsIntoSections();
-  //controller.divide(30);
-
-  //controller.drawAtoms();
-  //controller.drawSections(false); // noFill or fill
-  
-  //controller.drawSectionsDebug();
-
-  println(controller.sections.size());
 }
 
 void draw() {
-  background(0, 0, 0);
+  //background(0, 0, 0);
   controller.sortAtomsIntoSections();
+    
+  i = controller.divideSingle(50,i);  
   
-  //controller.divide(30);
-  Section s = controller.sections.get(i);
-      
-  if (s.atoms.size() >= 30) {
-    controller.splitSection(i);
-    
-    int size = controller.sections.size();
-    Section first = controller.sections.get(size-1); // Last element
-    Section second = controller.sections.get(size-2); // Second to last element
-    first.findAtoms(s.atoms);
-    second.findAtoms(s.atoms);
-    controller.sections.remove(i);
-    
-    --i;
+  if (i == controller.sections.size()) {
+    noLoop();
+    controller.drawAtoms();
+    return;
   }
   
-  controller.drawSections(false);
+  Section s = controller.sections.get(i);
   controller.drawAtoms();
-  controller.drawSectionsDebug();
-  ++i;
-  if (i > sections.size()) noLoop();
+  s.show(false);
+  
+  //controller.drawSectionsDebug();
+
+  if (frameCount % 10 == 0) println(frameRate);
+  
 }

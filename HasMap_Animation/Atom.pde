@@ -10,7 +10,7 @@ class Atom {
   
   void show(){
     push();
-    strokeWeight(5);
+    strokeWeight(3);
     point(x, y);
     pop();
   }

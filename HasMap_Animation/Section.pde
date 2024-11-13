@@ -23,6 +23,15 @@ class Section {
     pop();
   }
   
+  void showColor(boolean noFill) {
+    push();
+    fill(230, 20, 20);
+    if (noFill) noFill();
+    stroke(255, 0, 0);
+    rect(x, y, w, h);
+    pop();
+  }
+  
   void findAtoms(ArrayList<Atom> allAtoms){
     atoms.clear();
     for (Atom a : allAtoms) {

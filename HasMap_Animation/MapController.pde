@@ -75,7 +75,22 @@ class MapController {
     }
   }
   
-  void divideSingle(int threshold, int i) {
+  int divideSingle(int threshold, int i) {
+    Section s = controller.sections.get(i);
+    
+    if (s.atoms.size() >= threshold) {
+      splitSection(i);
+      
+      int size = sections.size();
+      Section first = sections.get(size-1); // Last element
+      Section second = sections.get(size-2); // Second to last element
+      first.findAtoms(s.atoms);
+      second.findAtoms(s.atoms);
+      sections.remove(i);
+      
+      i--;
+    }
+    return ++i;
   }
   
   void sortAtomsIntoSections(){
