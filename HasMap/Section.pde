@@ -11,6 +11,7 @@ class Section {
     y = _y;
     w = _w;
     h = _h;
+    atoms = new ArrayList<Atom>(); 
   }
   
  
@@ -21,8 +22,9 @@ class Section {
     pop();
   }
   
-  void findAtoms(ArrayList<Atom> atoms){
-    for (Atom a : atoms) {
+  void findAtoms(ArrayList<Atom> allAtoms){
+    atoms.clear();
+    for (Atom a : allAtoms) {
       if (pointRect(a.x, a.y, x, y, w, h)) {
         atoms.add(a);
       }
