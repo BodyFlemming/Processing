@@ -2,10 +2,13 @@
 class MapController {
   ArrayList<Section> sections;
   ArrayList<Atom> atoms;
+  int spread;
   // boolean sliceHor = true; 
   
-  MapController(int atomsAmount) {
+  MapController(int atomsAmount, int _spread) {
     initialMap(atomsAmount);
+    spread = _spread;
+    println(spread);
   }
   
   String getSliceDir(int i) {
@@ -55,7 +58,7 @@ class MapController {
   void divide(int threshold) {
     for (int i = 0; i < sections.size(); i++) {
       Section s = sections.get(i);
-      println(s.atoms.size());
+      
       if (s.atoms.size() >= threshold) {
         splitSection(i);
         
@@ -68,6 +71,7 @@ class MapController {
         
         --i;
       }
+      println(i + ":\t" + s.atoms.size());
     }
   }
   
@@ -87,9 +91,9 @@ class MapController {
     }
   }
   
-  void drawSections() {
+  void drawSections(boolean noFill) {
     for (Section s : sections) {
-      s.show();
+      s.show(noFill);
     }
   }
   

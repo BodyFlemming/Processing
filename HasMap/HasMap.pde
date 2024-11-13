@@ -1,15 +1,15 @@
 MapController controller;
 
 void setup() {
-  size(600, 600);
-  controller = new MapController();
-  controller.initialMap();
+  size(1024, 1024); // Size needs to be of power 2, otherwise small gaps happens at small sections sizes...
+  controller = new MapController(1000, 10);
   controller.sortAtomsIntoSections();
-  controller.divide(5);
+  controller.divide(30);
 
-  controller.drawSections();
   controller.drawAtoms();
-  controller.drawSectionsDebug();
+  controller.drawSections(false); // noFill or fill
+  
+  //controller.drawSectionsDebug();
 
   println(controller.sections.size());
 }

@@ -15,9 +15,10 @@ class Section {
   }
   
  
-  void show() {
+  void show(boolean noFill) {
     push();
-    stroke(0, 0, 0);
+    if (noFill) noFill();
+    stroke(255, 0, 0);
     rect(x, y, w, h);
     pop();
   }
